@@ -14,8 +14,13 @@ export default {
         firebase.auth.EmailAuthProvider.PROVIDER_ID
         ]
       }
-    var ui = new firebaseui.auth.AuthUI(firebase.auth())
-    ui.start('#firebaseui-auth-container', uiConfig)
+    this.ui = new firebaseui.auth.AuthUI(firebase.auth())
+    this.ui.start('#firebaseui-auth-container', uiConfig)
+    console.log(this.ui)
+    },
+    destroyed () {
+      this.ui.delete()
     }
+    
 }
 </script>

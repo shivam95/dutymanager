@@ -1,6 +1,7 @@
 <template>
   <v-app light>
     <v-navigation-drawer
+      v-if="isUserLoggedIn"
       persistent
       :mini-variant="miniVariant"
       :clipped="clipped"
@@ -22,7 +23,7 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar fixed>
+    <v-toolbar v-if="isUserLoggedIn" fixed>
       <v-toolbar-side-icon @click.stop="drawer = !drawer" light></v-toolbar-side-icon>
       <v-btn
         icon
@@ -94,6 +95,7 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 // import Firebase from 'firebase'
 // var config = {
 //     apiKey: 'AIzaSyBxMbtc40seBq91QuIOWVxjwnNbtNictU4',
@@ -120,6 +122,9 @@
         rightDrawer: false,
         title: 'Vuetify.js'
       }
+    },
+    computed: {
+      ...mapGetters(['isUserLoggedIn'])
     }
   }
 </script>

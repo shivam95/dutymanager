@@ -7,14 +7,22 @@
     <p>{{name}}</p> 
     <p>{{email}}</p> 
     <hr> 
-    <pre>{{user}}</pre> 
   </div>
 </template>
 <script>
 import firebase from 'firebase'
 export default {
+  data () {
+    return {
+        name: '',
+        email: '',
+        photo: '',
+        userId: ''
+    }
+  },
   created () {
   this.user = firebase.auth().currentUser
+  console.log(this.user)
   if (this.user) {
     this.name = this.user.displayName
     this.email = this.user.email
